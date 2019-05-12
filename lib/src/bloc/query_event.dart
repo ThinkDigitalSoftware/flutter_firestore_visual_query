@@ -34,7 +34,7 @@ class NewQueryEvent extends QueryEvent {
               this.isGreaterThanOrEqualTo,
               this.arrayContains,
               this.isNull
-            ].where((element) => element != null).length ==
+            ].where((element) => element != null).length <=
             1,
         "only one of these can be selected for any given query."
         "isEqualTo: $isEqualTo,"

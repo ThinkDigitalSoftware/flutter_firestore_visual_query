@@ -371,24 +371,7 @@ class DataTile extends StatelessWidget {
     if (data is MapEntry) {
       var value = data.value;
       if (value is Map) {
-        return Padding(
-          padding: EdgeInsets.only(left: 4.0 * level),
-          child: ExpansionTile(
-            title: Text("${data.key}"),
-            children: <Widget>[
-              for (var entry in value.entries)
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          left: BorderSide(color: Colors.red, width: 2))),
-                  child: DataTile(
-                    data: entry,
-                    level: this.level + 1,
-                  ),
-                )
-            ],
-          ),
-        );
+        return mapWidget(key: data.key, value: data.value);
       } else if (value is String ||
           value is int ||
           value == null ||
@@ -417,20 +400,46 @@ class DataTile extends StatelessWidget {
         data is bool ||
         data == null ||
         data is DocumentReference) {
-      return Row(
-        children: <Widget>[
-          if (index != null)
-            Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                color: Colors.grey,
-                padding: EdgeInsets.all(8),
-                child: Text(index.toString())),
-          Text(
-            data is DocumentReference ? data.path : data,
-          ),
-        ],
+      return Container(
+        height: 15,
+        child: Row(
+          children: <Widget>[
+            if (index != null)
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  color: Colors.grey,
+                  padding: EdgeInsets.all(8),
+                  child: Text(index.toString())),
+            Text(
+              data is DocumentReference ? data.path : data,
+            ),
+          ],
+        ),
       );
+    } else if (data is Map) {
+      return mapWidget(value: data);
     }
     return errorText(data);
+  }
+
+  Widget mapWidget({String key = "", @required Map value}) {
+    return Padding(
+      padding: EdgeInsets.only(left: 4.0 * level),
+      child: ExpansionTile(
+        title: Text(key),
+        children: <Widget>[
+          for (var entry in value.entries)
+            Container(
+              decoration: BoxDecoration(
+                  border:
+                      Border(left: BorderSide(color: Colors.red, width: 2))),
+              child: DataTile(
+                data: entry,
+                level: this.level + 1,
+              ),
+            )
+        ],
+      ),
+    );
   }
 }

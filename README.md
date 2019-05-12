@@ -1,14 +1,19 @@
 # flutter_firestore_visual_query
 
-A visual way to query your firestore database for testing
+A visual way to query your firestore database for testing.
+This package provides a simple UI for querying Firebase that
+you can just plug into your existing code. This is useful
+for testing queries without having to manually create functions and run the code.
+It can be plugged in anyway, but a Drawer  EndDrawer, or full page widget is the best option.
+I'm looking for suggestings, bug reports, feature requests and new UIs, pull requests and more, so feel free to contribute!
 
-## Getting Started
+## Roadmap
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+[ ] Support writing map objects to firebase.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+[ ] Multiple ways of rendering widgets. Ie. Pagination for maps.
+
+[ ] Support for all datatypes in widgets that make sense.
+
+[ ] New UI.
+
