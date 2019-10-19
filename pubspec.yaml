@@ -1,6 +1,6 @@
 name: flutter_firestore_visual_query
 description: A visual way to query your firestore database for testing using Flutter
-version: 0.0.2
+version: 0.1.0
 author: Jonathan White <jwhite@thinkdigital.software>
 homepage: https://github.com/ThinkDigitalRepair/flutter_firestore_visual_query
 
@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cloud_firestore: ^0.11.0+1
-  flutter_bloc: ^0.13.0
-  bloc: ^0.13.0
+  cloud_firestore: ^0.12.9+5
+  flutter_bloc: ^0.22.1
+  bloc: ^0.16.1
 
 
 

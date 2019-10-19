@@ -40,7 +40,7 @@ class _FirestoreQueryWidgetState extends State<FirestoreQueryWidget> {
 
   @override
   void initState() {
-    BlocSupervisor().delegate = LoggingDelegate();
+    BlocSupervisor.delegate = LoggingDelegate();
     queryBloc = QueryBloc(firestore: widget.firestore);
     _collectionController = TextEditingController()
       ..addListener(() {
@@ -61,7 +61,7 @@ class _FirestoreQueryWidgetState extends State<FirestoreQueryWidget> {
 
   @override
   void dispose() {
-    queryBloc.dispose();
+    queryBloc.close();
     super.dispose();
   }
 
@@ -123,7 +123,7 @@ class _FirestoreQueryWidgetState extends State<FirestoreQueryWidget> {
                                 isNull = true;
                                 break;
                             }
-                            queryBloc.dispatch(NewQueryEvent(
+                            queryBloc.add(NewQueryEvent(
                                 collection: collection,
                                 field: field,
                                 isEqualTo: isEqualTo,
@@ -207,8 +207,7 @@ class _FirestoreQueryWidgetState extends State<FirestoreQueryWidget> {
             ],
           ),
         ),
-        BlocBuilder<QueryEvent, QueryState>(
-          bloc: queryBloc,
+        BlocBuilder<QueryBloc, QueryState>(
           builder: (context, snapshot) {
             return Expanded(
               child: ResultsCard(

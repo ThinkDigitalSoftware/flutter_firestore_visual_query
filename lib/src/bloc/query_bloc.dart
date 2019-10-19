@@ -33,7 +33,7 @@ class QueryBloc extends Bloc<QueryEvent, QueryState> {
 
       yield QueryResult(results: documents);
     }
-    yield this.currentState;
+    yield this.state;
   }
 }
 
